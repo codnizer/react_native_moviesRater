@@ -84,6 +84,72 @@ npm start
 ```
 Scan the QR code with the Expo Go app on your phone to launch the project.
 
+### 5. Using .env for API Key
+
+For better security, you can store your API key in an `.env` file.
+
+1. Create a file named `.env` in the root of the project
+2. Add your token with the `EXPO_PUBLIC_` prefix:
+
+```env
+EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN=YOUR_V4_ACCESS_TOKEN_GOES_HERE
+```
+
+3. Add .env to your .gitignore file
+4. Restart your server (npm start)
+5. Update api/tmdb.js to use the environment variable:
+
+```javascript
+const API_ACCESS_TOKEN = process.env.EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN;
+```
+### 6. Building for Production (APK)
+To build a standalone .apk file for Android, this project uses EAS (Expo Application Services).
+
+1. Install the EAS CLI
+If you don't have it, install the global command-line tool:
+```bash
+npm install -g eas-cli
+```
+2. Log in to your Expo Account
+```bash
+eas login
+```
+
+3. Configure the Project
+This command creates an eas.json file to configure your builds.
+
+```bash
+eas build:configure
+```
+
+4. Edit eas.json for APK
+By default, EAS builds an .aab file. To build an .apk (for direct installation), add the "buildType": "apk" line to the production profile in your eas.json:
+
+```json
+{
+  "cli": { ... },
+  "build": {
+    "production": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    ...
+  },
+  ...
+}
+```
+
+5. Start the Build
+Run the build command for the production profile:
+
+```bash
+eas build -p android --profile production
+```
+
+6. Download Your APK
+EAS will build your app in the cloud (this may take 5-15 minutes). When finished, it will provide a secure link. You can follow this link to download your .apk file.
+
 ### 📁 File Structure
 
 Here is a simplified overview of the project structure:
