@@ -66,7 +66,7 @@ Scan the QR code with the Expo Go app on your phone to launch the project.
 ### 📁 File Structure
 
 Here is a simplified overview of the project structure:
- 
+```text
 ├── api/
 │   └── tmdb.js           # All TMDB API calls and Axios setup
 ├── assets/               # App icons and splash screens
@@ -82,4 +82,4 @@ Here is a simplified overview of the project structure:
 │   ├── DetailScreen.js   # Movie details screen
 │   └── SavedScreen.js    # Screen for favorited movies
 └── App.js                # Root component with Navigation/Context providers
- # react_native_moviesRater
+```
