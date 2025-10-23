@@ -122,16 +122,44 @@ This command creates an eas.json file to configure your builds.
 eas build:configure
 ```
 
-4. Edit eas.json for APK
-By default, EAS builds an .aab file. To build an .apk (for direct installation), add the "buildType": "apk" line to the production profile in your eas.json:
+4. Add Production Secrets (CRITICAL STEP) EAS builds in the cloud and cannot access your local .env file. You must provide your API key as a "secret." Run this command once:
 
-```json
+```Bash
+# Replace YOUR_TOKEN_HERE with your actual API token
+eas secret:create --scope project --name EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN --value "YOUR_TOKEN_HERE"
+```
+
+5. Configure Build Files (app.json & eas.json) You must tell the build to use your secret and request Internet permissions.
+
+First, in app.json, add the android.permissions key:
+
+```JSON
+
+{
+  "expo": {
+    ...
+    "android": {
+      ...
+      "permissions": [
+        "android.permission.INTERNET"
+      ]
+    },
+    ...
+  }
+}
+```
+Second, in eas.json, modify your production profile to build an APK and use the secret you created:
+
+```JSON
 {
   "cli": { ... },
   "build": {
     "production": {
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN": "@EXPO_PUBLIC_TMDB_API_ACCESS_TOKEN"
       }
     },
     ...
@@ -140,15 +168,12 @@ By default, EAS builds an .aab file. To build an .apk (for direct installation),
 }
 ```
 
-5. Start the Build
-Run the build command for the production profile:
-
-```bash
+6. Start the Build Run the build command for the production profile:
+```Bash
 eas build -p android --profile production
 ```
 
-6. Download Your APK
-EAS will build your app in the cloud (this may take 5-15 minutes). When finished, it will provide a secure link. You can follow this link to download your .apk file.
+7. Download Your APK EAS will build your app in the cloud (this may take 5-15 minutes). When finished, it will provide a secure link. You can follow this link to download your .apk file.
 
 ### 📁 File Structure
 
