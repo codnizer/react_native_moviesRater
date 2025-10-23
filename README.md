@@ -11,6 +11,27 @@ A sleek and modern React Native movie discovery application built with Expo. Use
 - **Persistent Storage**: Saved movies are stored locally on the user's device using AsyncStorage and managed globally with React Context.
 - **Tab Navigation**: A clean bottom tab navigator to switch between the "Discover" and "Saved" screens.
 
+## 🎥 App Preview
+
+<div align="center">
+  
+### Home Screen
+<img src="screenshots/homescreen.jpeg" alt="Home Screen" width="200"/>
+
+### Movie Details
+<img src="screenshots/moviedetails.jpeg" alt="Movie Details" width="200"/>
+
+### Search Functionality
+<img src="screenshots/search.jpeg" alt="Search Movies" width="200"/>
+
+### Saved Movies
+<img src="screenshots/savedmovies.jpeg" alt="Saved Movies" width="200"/>
+
+### Like/Unlike Feature
+<img src="screenshots/likemovie.jpeg" alt="Like Movie" width="200"/>
+
+</div>
+
 ## 🛠 Tech Stack
 
 - **Core**: React Native, Expo
